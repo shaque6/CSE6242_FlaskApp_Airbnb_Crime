@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html> 
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<link rel="stylesheet" type="text/css" href="../static/index.css"> 
+
+
+
+
+	</head>
+	
+	<body>
+
+        <h1 style="text-align:center;">CSE 6242 - Overlaying Airbnb Listings with Crime Data</h1>
+
+        <form class="grid" action="/map" method="POST">
+
+          <label for="name">Choose a city to explore:</label>
+          <select name="name" id="name">
+            <option value="blank"></option>       
+            <option value="Chicago">Chicago</option>
+            <option value="City2">City2</option>
+            <option value="City3">City3</option>
+            <option value="City4">City4</option>
+            <option value="City5">City5</option>
+          </select>
+
+          <label>Enter a price per night you are interested in for an Airbnb: <br> <input type = "text" name = "price" id = "price" /></label>
+
+          <center><input class="file_submit" type="Submit"></center>
+
+        </form>
+
+        
+        {% if name %}
+        <center>
+          <h3>Showing the city of {{name}} with Airbnb listings near the price of {{price}} per night.</h3>
+        </center> 
+        {% endif %}
+
+        {% if name == 'Chicago' %}
+        <iframe src="../static/index_Chicago.html" width="100%" height="800" style="border:1px solid black;">
+        </iframe>
+        {% endif %}
+
+                
+        <br>
+        <br>
+        <br>
+
+
+    </body>
+
+
+    
+</html>
