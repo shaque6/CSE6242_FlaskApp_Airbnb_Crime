@@ -20,8 +20,8 @@
           <label for="name">Choose a city to explore:</label>
           <select name="name" id="name">
             <option value="blank"></option>       
+            <option value="Boston">Boston</option>
             <option value="Chicago">Chicago</option>
-            <option value="City2">City2</option>
             <option value="City3">City3</option>
             <option value="City4">City4</option>
             <option value="City5">City5</option>
@@ -42,6 +42,11 @@
 
         {% if name == 'Chicago' %}
         <iframe src="../static/index_Chicago.html" width="100%" height="800" style="border:1px solid black;">
+        </iframe>
+        {% endif %}
+
+        {% if name == 'Boston' %}
+        <iframe src="../static/index_Boston.html" width="100%" height="800" style="border:1px solid black;">
         </iframe>
         {% endif %}
 

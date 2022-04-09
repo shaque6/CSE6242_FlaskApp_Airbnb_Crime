@@ -10,6 +10,8 @@ import folium
 import branca
 
 from MapScripts.createChicagoMap import createChicagoMap
+from MapScripts.createBostonMap import createBostonMap
+
 
 app = Flask(__name__)
 
@@ -28,7 +30,10 @@ def result():
     print(output)
     name = output["name"]
     price = output["price"]
-    # exec(open("Chicago_Crime.py").read())
+    
+    if name == 'Boston':
+        createBostonMap(price)
+
     if name == 'Chicago':
         createChicagoMap(price)
 
