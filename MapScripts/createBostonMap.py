@@ -62,7 +62,7 @@ def createBostonMap(price=200):
     folium.TileLayer('CartoDB positron',name="Light Map",control=False).add_to(mymap)
 
 
-    myscale = (map_and_stats_2['count'].quantile((0,0.25,0.9,1))).tolist()
+    myscale = (map_and_stats_2['count'].quantile((0,0.4,0.9,1))).tolist()
 
 
     mymap.choropleth(

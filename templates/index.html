@@ -13,7 +13,33 @@
 	
 	<body>
 
+            <!-- Trigger/Open The Modal -->
+              <button id="myBtn" class="Button">Project Info</button>
+
+    
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+    
+              <!-- Modal content -->
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Safety is a major concern for a user booking an Airbnb in an unfamiliar area. Presently, users must parse
+                  through various data sources to evaluate the safety of a particular neighborhood. Data sources are not
+                  centralized, the current practice is time consuming for the user, and may result in inaccurate conclusions.
+                  Another problem is that Airbnb property owners do not know what price to list their property to maximize
+                  profit. Often, it requires trial and error to determine a price that is consistent with the market. Our project
+                  addresses these problems by providing an interactive map of crime rate overlayed with Airbnb property
+                  data, thus allowing a user to quickly identify the relative safety of the area in which they are booking an
+                  Airbnb. The regression model provided by our project allows an Airbnb property owner to determine what
+                  price to list their rental property.</p>
+              </div>
+    
+            </div>
+
         <h1 style="text-align:center;">CSE 6242 - Overlaying Airbnb Listings with Crime Data</h1>
+
+
+
 
         <form class="grid" action="/map" method="POST">
 
@@ -22,7 +48,7 @@
             <option value="blank"></option>       
             <option value="Boston">Boston</option>
             <option value="Chicago">Chicago</option>
-            <option value="City3">City3</option>
+            <option value="Los Angeles">Los Angeles</option>
             <option value="City4">City4</option>
             <option value="City5">City5</option>
           </select>
@@ -50,11 +76,45 @@
         </iframe>
         {% endif %}
 
+        {% if name == 'Los Angeles' %}
+        <iframe src="../static/index_LA.html" width="100%" height="800" style="border:1px solid black;">
+        </iframe>
+        {% endif %}
                 
         <br>
         <br>
         <br>
 
+
+
+        <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal -->
+        <script>
+          // Get the modal
+          var modal = document.getElementById("myModal");
+          
+          // Get the button that opens the modal
+          var btn = document.getElementById("myBtn");
+          
+          // Get the <span> element that closes the modal
+          var span = document.getElementsByClassName("close")[0];
+          
+          // When the user clicks the button, open the modal 
+          btn.onclick = function() {
+            modal.style.display = "block";
+          }
+          
+          // When the user clicks on <span> (x), close the modal
+          span.onclick = function() {
+            modal.style.display = "none";
+          }
+          
+          // When the user clicks anywhere outside of the modal, close it
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+          }
+          </script>
 
     </body>
 

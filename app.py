@@ -11,6 +11,8 @@ import branca
 
 from MapScripts.createChicagoMap import createChicagoMap
 from MapScripts.createBostonMap import createBostonMap
+from MapScripts.createLAMap import createLAMap
+
 
 
 app = Flask(__name__)
@@ -36,6 +38,9 @@ def result():
 
     if name == 'Chicago':
         createChicagoMap(price)
+
+    if name == 'Los Angeles':
+        createLAMap(price)
 
     return render_template('index.html', name = name, price=price)
     
