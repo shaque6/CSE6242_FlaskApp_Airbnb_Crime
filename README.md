@@ -7,7 +7,7 @@
 
 ## Environment Setup
 
-We found it was easiest to use Anaconda to install the appropiate packages because the fiona library was a challenge to install
+We found it was easiest to use Anaconda to install the appropiate packages because the fiona library was a challenge to install.
 
 In Anaconda create a new environment and then run these commands in the Anaconda Prompt:
 
