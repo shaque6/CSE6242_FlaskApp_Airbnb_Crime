@@ -9,9 +9,9 @@ from shapely.geometry import Point, Polygon
 import folium
 import branca
 
-from MapScripts.createChicagoMap import createChicagoMap
-from MapScripts.createBostonMap import createBostonMap
-from MapScripts.createLAMap import createLAMap
+# from MapScripts.createChicagoMap import createChicagoMap
+# from MapScripts.createBostonMap import createBostonMap
+# from MapScripts.createLAMap import createLAMap
 from MapScripts.createMap import createMap
 
 
@@ -32,7 +32,12 @@ def result():
     output = request.form.to_dict()
     print(output)
     name = output["name"]
-    price = output["price"]
+    RoomType = output["RoomType"]
+    accommodate = output["accommodate"]
+    bed = output["bed"]
+    bathroom = output["bathroom"]
+    neighborhood = output["neighborhood"]
+    price = 200
     path_choro = ''
     path_listing = ''
     
@@ -63,7 +68,7 @@ def result():
 
     createMap(path_choro, path_listing, abrv, price)
 
-    return render_template('index.html', name = name, price=price)
+    return render_template('index.html', name = name, price=price, RoomType = RoomType, accommodate=accommodate, bed=bed, bathroom=bathroom, neighborhood=neighborhood)
 
 
 if __name__ == "__main__":

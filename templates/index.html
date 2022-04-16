@@ -44,7 +44,7 @@
         <form class="grid" action="/map" method="POST">
 
           <label for="name">Choose a city to explore:</label>
-          <select name="name" id="name">
+          <select name="name" id="name" onchange="nbFunction(this.value)">
             <option value="blank"></option>       
             <option value="Boston">Boston</option>
             <option value="Chicago">Chicago</option>
@@ -53,7 +53,31 @@
             <option value="San Francisco">San Francisco</option>
           </select>
 
-          <label>Enter a price per night you are interested in for an Airbnb: <br> <input type = "text" name = "price" id = "price" /></label>
+          <h1>Desired Features for Airbnb</h1>
+
+          <label for="RoomType">Select a room type:
+          <select name="RoomType" id="RoomType">
+            <option value="blank"></option>       
+            <option value="entire">Entire home/apt</option>       
+            <option value="private">Private room</option>       
+            <option value="shared">Shared room</option>     
+            <option value="hotel">Hotel room</option>         
+          </select>
+          </label>
+
+          <label>Enter number of people to accommodate: <input type = "text" name = "accommodate" id = "accommodate" /></label>
+
+          <label>Enter number of beds:<input type = "text" name = "bed" id = "bed" /></label>
+
+          <label>Enter number of bathrooms:<input type = "text" name = "bathroom" id = "bathroom" /></label>
+
+          <label for="neighborhood">Select a neighborhood:
+          <select name="neighborhood" id="neighborhood">
+            <option value="blank">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</option>       
+          </select>
+          </label>
+
+          <!-- <label>Enter a price per night you are interested in for an Airbnb: <br> <input type = "text" name = "price" id = "price" /></label> -->
 
           <center><input class="file_submit" type="Submit"></center>
 
@@ -62,7 +86,10 @@
         
         {% if name %}
         <center>
-          <h3>Showing the city of {{name}} with Airbnb listings near the price of {{price}} per night.</h3>
+          <h2>Showing the city of {{name}} with Airbnb listings near the price of {{price}} per night based off regression model. </h2> 
+          <h2> Inputs to model were room type: {{RoomType}}, accommodating {{accommodate}} people, {{bed}} beds, {{bathroom}} bathrooms 
+            and desired neighborhood of {{neighborhood}}.
+          </h2>
         </center> 
         {% endif %}
 
@@ -123,6 +150,35 @@
               modal.style.display = "none";
             }
           }
+
+          // populate neighborhoods
+          function nbFunction(city){
+            var select = document.getElementById("neighborhood");
+            if (city=="Chicago"){
+              var options = ["", 'Albany Park',	'Archer Heights',	'Armour Square',	'Ashburn',	'Auburn Gresham',	'Austin',	'Avalon Park',	'Avondale',	'Belmont Cragin',	'Beverly',	'Bridgeport',	'Brighton Park',	'Burnside',	'Calumet Heights',	'Chatham',	'Chicago Lawn',	'Clearing',	'Douglas',	'Dunning',	'East Garfield Park',	'East Side',	'Edgewater',	'Edison Park',	'Englewood',	'Forest Glen',	'Fuller Park',	'Gage Park',	'Garfield Ridge',	'Grand Boulevard',	'Greater Grand Crossing',	'Hegewisch',	'Hermosa',	'Humboldt Park',	'Hyde Park',	'Irving Park',	'Jefferson Park',	'Kenwood',	'Lake View',	'Lincoln Park',	'Lincoln Square',	'Logan Square',	'Loop',	'Lower West Side',	'Mckinley Park',	'Montclare',	'Morgan Park',	'Mount Greenwood',	'Near North Side',	'Near South Side',	'Near West Side',	'New City',	'North Center',	'North Lawndale',	'North Park',	'Norwood Park',	'Oakland',	'Ohare',	'Portage Park',	'Pullman',	'Rogers Park',	'Roseland',	'South Chicago',	'South Deering',	'South Lawndale',	'South Shore',	'Uptown',	'Washington Heights',	'Washington Park',	'West Elsdon',	'West Englewood',	'West Garfield Park',	'West Lawn',	'West Pullman',	'West Ridge',	'West Town',	'Woodlawn'];
+            } else if (city =="New York City"){
+              var options = ["", 'Allerton',	'Arden Heights',	'Arrochar',	'Arverne',	'Astoria',	'Bath Beach',	'Battery Park City',	'Bay Ridge',	'Bay Terrace',	'Baychester',	'Bayside',	'Bayswater',	'Bedford-Stuyvesant',	'Belle Harbor',	'Bellerose',	'Belmont',	'Bensonhurst',	'Bergen Beach',	'Boerum Hill',	'Borough Park',	'Breezy Point',	'Briarwood',	'Brighton Beach',	'Bronxdale',	'Brooklyn Heights',	'Brownsville',	'Bulls Head',	'Bushwick',	'Cambria Heights',	'Canarsie',	'Carroll Gardens',	'Castle Hill',	'Castleton Corners',	'Chelsea',	'Chelsea, Staten Island',	'Chinatown',	'City Island',	'Civic Center',	'Claremont Village',	'Clason Point',	'Clifton',	'Clinton Hill',	'Cobble Hill',	'College Point',	'Columbia St',	'Concord',	'Concourse',	'Concourse Village',	'Coney Island',	'Co-op City',	'Corona',	'Country Club',	'Crown Heights',	'Cypress Hills',	'Ditmars Steinway',	'Dongan Hills',	'Douglaston',	'Downtown Brooklyn',	'DUMBO',	'Dyker Heights',	'East Elmhurst',	'East Flatbush',	'East Harlem',	'East Morrisania',	'East New York',	'East Village',	'Eastchester',	'Edenwald',	'Edgemere',	'Elmhurst',	'Eltingville',	'Emerson Hill',	'Far Rockaway',	'Fieldston',	'Financial District',	'Flatbush',	'Flatiron District',	'Flatlands',	'Flushing',	'Fordham',	'Forest Hills',	'Fort Greene',	'Fort Hamilton',	'Fort Wadsworth',	'Fresh Meadows',	'Gerritsen Beach',	'Glendale',	'Gowanus',	'Gramercy',	'Graniteville',	'Grant City',	'Gravesend',	'Great Kills',	'Greenpoint',	'Greenwich Village',	'Grymes Hill',	'Harlem',	'Hells Kitchen',	'Highbridge',	'Hollis',	'Holliswood',	'Howard Beach',	'Howland Hook',	'Huguenot',	'Hunts Point',	'Inwood',	'Jackson Heights',	'Jamaica',	'Jamaica Estates',	'Jamaica Hills',	'Kensington',	'Kew Gardens',	'Kew Gardens Hills',	'Kingsbridge',	'Kips Bay',	'Laurelton',	'Little Italy',	'Little Neck',	'Long Island City',	'Longwood',	'Lower East Side',	'Manhattan Beach',	'Marble Hill',	'Mariners Harbor',	'Maspeth',	'Melrose',	'Middle Village',	'Midland Beach',	'Midtown',	'Midwood',	'Mill Basin',	'Morningside Heights',	'Morris Heights',	'Morris Park',	'Morrisania',	'Mott Haven',	'Mount Eden',	'Mount Hope',	'Murray Hill',	'Navy Yard',	'Neponsit',	'New Brighton',	'New Dorp',	'New Dorp Beach',	'New Springville',	'NoHo',	'Nolita',	'North Riverdale',	'Norwood',	'Oakwood',	'Olinville',	'Ozone Park',	'Park Slope',	'Parkchester',	'Pelham Bay',	'Pelham Gardens',	'Port Morris',	'Port Richmond',	'Princes Bay',	'Prospect Heights',	'Prospect-Lefferts Gardens',	'Queens Village',	'Randall Manor',	'Red Hook',	'Rego Park',	'Richmond Hill',	'Richmondtown',	'Ridgewood',	'Riverdale',	'Rockaway Beach',	'Roosevelt Island',	'Rosebank',	'Rosedale',	'Rossville',	'Schuylerville',	'Sea Gate',	'Sheepshead Bay',	'Shore Acres',	'Silver Lake',	'SoHo',	'Soundview',	'South Beach',	'South Ozone Park',	'South Slope',	'Springfield Gardens',	'Spuyten Duyvil',	'St. Albans',	'St. George',	'Stapleton',	'Stuyvesant Town',	'Sunnyside',	'Sunset Park',	'Theater District',	'Throgs Neck',	'Todt Hill',	'Tompkinsville',	'Tottenville',	'Tremont',	'Tribeca',	'Two Bridges',	'Unionport',	'University Heights',	'Upper East Side',	'Upper West Side',	'Van Nest',	'Vinegar Hill',	'Wakefield',	'Washington Heights',	'West Brighton',	'West Farms',	'West Village',	'Westchester Square',	'Westerleigh',	'Whitestone',	'Williamsbridge',	'Williamsburg',	'Windsor Terrace',	'Woodhaven',	'Woodlawn',	'Woodrow',	'Woodside'];
+            }
+            else if (city =="Boston"){
+              var options = ["",'Allston',	'Back Bay',	'Bay Village',	'Beacon Hill',	'Brighton',	'Charlestown',	'Chinatown',	'Dorchester',	'Downtown',	'East Boston',	'Fenway',	'Hyde Park',	'Jamaica Plain',	'Leather District',	'Longwood Medical Area',	'Mattapan',	'Mission Hill',	'North End',	'Roslindale',	'Roxbury',	'South Boston',	'South Boston Waterfront',	'South End',	'West End',	'West Roxbury']
+            }
+            else if (city =="Los Angeles"){
+              var options = ["", 'Acton',	'Adams-Normandie',	'Agoura Hills',	'Agua Dulce',	'Alhambra',	'Alondra Park',	'Altadena',	'Angeles Crest',	'Arcadia',	'Arleta',	'Arlington Heights',	'Artesia',	'Athens',	'Atwater Village',	'Avalon',	'Avocado Heights',	'Azusa',	'Baldwin Hills/Crenshaw',	'Baldwin Park',	'Bel-Air',	'Bell Gardens',	'Bell',	'Bellflower',	'Beverly Crest',	'Beverly Grove',	'Beverly Hills',	'Beverlywood',	'Boyle Heights',	'Bradbury',	'Brentwood',	'Broadway-Manchester',	'Burbank',	'Calabasas',	'Canoga Park',	'Carson',	'Carthay',	'Castaic Canyons',	'Castaic',	'Central-Alameda',	'Century City',	'Cerritos',	'Charter Oak',	'Chatsworth Reservoir',	'Chatsworth',	'Chesterfield Square',	'Cheviot Hills',	'Chinatown',	'Citrus',	'Claremont',	'Commerce',	'Compton',	'Covina',	'Cudahy',	'Culver City',	'Cypress Park',	'Del Aire',	'Del Rey',	'Desert View Highlands',	'Diamond Bar',	'Downey',	'Downtown',	'Duarte',	'Eagle Rock',	'East Compton',	'East Hollywood',	'East Los Angeles',	'East Pasadena',	'East San Gabriel',	'East Whittier',	'Echo Park',	'El Monte',	'El Segundo',	'El Sereno',	'Elizabeth Lake',	'Elysian Park',	'Elysian Valley',	'Encino',	'Exposition Park',	'Fairfax',	'Florence',	'Florence-Firestone',	'Gardena',	'Glassell Park',	'Glendale',	'Glendora',	'Gramercy Park',	'Granada Hills',	'Green Meadows',	'Green Valley',	'Griffith Park',	'Hacienda Heights',	'Hancock Park',	'Harbor City',	'Harbor Gateway',	'Harvard Heights',	'Harvard Park',	'Hasley Canyon',	'Hawaiian Gardens',	'Hawthorne',	'Hermosa Beach',	'Hidden Hills',	'Highland Park',	'Historic South-Central',	'Hollywood Hills West',	'Hollywood Hills',	'Hollywood',	'Huntington Park',	'Hyde Park',	'Industry',	'Inglewood',	'Irwindale',	'Jefferson Park',	'Koreatown',	'La Canada Flintridge',	'La Crescenta-Montrose',	'La Habra Heights',	'La Mirada',	'La Puente',	'La Verne',	'Ladera Heights',	'Lake Balboa',	'Lake Hughes',	'Lake Los Angeles',	'Lake View Terrace',	'Lakewood',	'Lancaster',	'Larchmont',	'Lawndale',	'Leimert Park',	'Lennox',	'Leona Valley',	'Lincoln Heights',	'Lomita',	'Long Beach',	'Lopez/Kagel Canyons',	'Los Feliz',	'Lynwood',	'Malibu',	'Manchester Square',	'Manhattan Beach',	'Mar Vista',	'Marina del Rey',	'Mayflower Village',	'Maywood',	'Mid-City',	'Mid-Wilshire',	'Mission Hills',	'Monrovia',	'Montebello',	'Montecito Heights',	'Monterey Park',	'Mount Washington',	'North El Monte',	'North Hills',	'North Hollywood',	'North Whittier',	'Northeast Antelope Valley',	'Northridge',	'Northwest Antelope Valley',	'Northwest Palmdale',	'Norwalk',	'Pacific Palisades',	'Pacoima',	'Palmdale',	'Palms',	'Palos Verdes Estates',	'Panorama City',	'Paramount',	'Pasadena',	'Pico Rivera',	'Pico-Robertson',	'Pico-Union',	'Playa del Rey',	'Playa Vista',	'Pomona',	'Porter Ranch',	'Quartz Hill',	'Rancho Dominguez',	'Rancho Palos Verdes',	'Rancho Park',	'Redondo Beach',	'Reseda',	'Ridge Route',	'Rolling Hills Estates',	'Rolling Hills',	'Rosemead',	'Rowland Heights',	'San Dimas',	'San Fernando',	'San Gabriel',	'San Marino',	'San Pasqual',	'San Pedro',	'Santa Clarita',	'Santa Fe Springs',	'Santa Monica',	'Sawtelle',	'Sepulveda Basin',	'Shadow Hills',	'Sherman Oaks',	'Sierra Madre',	'Signal Hill',	'Silver Lake',	'South Diamond Bar',	'South El Monte',	'South Gate',	'South Park',	'South Pasadena',	'South San Gabriel',	'South San Jose Hills',	'South Whittier',	'Southeast Antelope Valley',	'Stevenson Ranch',	'Studio City',	'Sun Valley',	'Sun Village',	'Sunland',	'Sylmar',	'Tarzana',	'Temple City',	'Toluca Lake',	'Topanga',	'Torrance',	'Tujunga Canyons',	'Tujunga',	'Unincorporated Catalina Island',	'Unincorporated Santa Monica Mountains',	'Unincorporated Santa Susana Mountains',	'Universal City',	'University Park',	'Val Verde',	'Valinda',	'Valley Glen',	'Valley Village',	'Van Nuys',	'Venice',	'Vermont Knolls',	'Vermont Square',	'Vermont Vista',	'Vermont-Slauson',	'Vernon',	'Veterans Administration',	'View Park-Windsor Hills',	'Vincent',	'Walnut',	'Watts',	'West Adams',	'West Carson',	'West Compton',	'West Covina',	'West Hills',	'West Hollywood',	'West Los Angeles',	'West Puente Valley',	'West Whittier-Los Nietos',	'Westchester',	'Westlake Village',	'Westlake',	'Westmont',	'Westwood',	'Whittier',	'Willowbrook',	'Wilmington',	'Windsor Square',	'Winnetka',	'Woodland Hills']
+            }
+            else if (city =="San Francisco"){
+              var options = ["", 'Western Addition',	'Bernal Heights',	'Haight Ashbury',	'Mission',	'Nob Hill',	'Downtown/Civic Center',	'Castro/Upper Market',	'Noe Valley',	'Potrero Hill',	'Pacific Heights',	'Glen Park',	'Outer Richmond',	'Twin Peaks',	'Financial District',	'Outer Sunset',	'Marina',	'Inner Richmond',	'West of Twin Peaks',	'Bayview',	'North Beach',	'Inner Sunset',	'Diamond Heights',	'Chinatown',	'Russian Hill',	'South of Market',	'Parkside',	'Presidio Heights',	'Ocean View',	'Excelsior',	'Outer Mission',	'Lakeshore',	'Crocker Amazon',	'Golden Gate Park',	'Presidio',	'Seacliff',	'Visitacion Valley']
+            }
+            select.innerHTML = '';
+            for(var i = 0; i < options.length; i++) {
+                  var opt = options[i];
+                  var el = document.createElement("option");
+                  el.textContent = opt;
+                  el.value = opt;
+                  select.appendChild(el);
+          }
+          }
+
+
           </script>
 
     </body>
