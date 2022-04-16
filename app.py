@@ -8,11 +8,13 @@ import numpy as np
 from shapely.geometry import Point, Polygon
 import folium
 import branca
+import math
 
 # from MapScripts.createChicagoMap import createChicagoMap
 # from MapScripts.createBostonMap import createBostonMap
 # from MapScripts.createLAMap import createLAMap
 from MapScripts.createMap import createMap
+from static.RegressionFXN import get_price
 
 
 
@@ -33,11 +35,14 @@ def result():
     print(output)
     name = output["name"]
     RoomType = output["RoomType"]
-    accommodate = output["accommodate"]
-    bed = output["bed"]
-    bathroom = output["bathroom"]
+    accommodate = float(output["accommodate"])
+    bed = float(output["bed"])
+    bathroom = float(output["bathroom"])
     neighborhood = output["neighborhood"]
-    price = 200
+    price = round(get_price(name, RoomType, accommodate, bathroom, bed, neighborhood),2)
+    price_lower = round(price-2.5)
+    price_upper = round(price+2.5)
+    print(price_lower, price_upper)
     path_choro = ''
     path_listing = ''
     
@@ -68,7 +73,7 @@ def result():
 
     createMap(path_choro, path_listing, abrv, price)
 
-    return render_template('index.html', name = name, price=price, RoomType = RoomType, accommodate=accommodate, bed=bed, bathroom=bathroom, neighborhood=neighborhood)
+    return render_template('index.html', name = name, price=price, price_lower = price_lower, price_upper = price_upper, RoomType = RoomType, accommodate=int(accommodate), bed=int(bed), bathroom=bathroom, neighborhood=neighborhood)
 
 
 if __name__ == "__main__":

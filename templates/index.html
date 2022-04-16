@@ -43,7 +43,7 @@
 
         <form class="grid" action="/map" method="POST">
 
-          <label for="name">Choose a city to explore:</label>
+          <h1>Choose a city to explore:</h1>
           <select name="name" id="name" onchange="nbFunction(this.value)">
             <option value="blank"></option>       
             <option value="Boston">Boston</option>
@@ -58,10 +58,10 @@
           <label for="RoomType">Select a room type:
           <select name="RoomType" id="RoomType">
             <option value="blank"></option>       
-            <option value="entire">Entire home/apt</option>       
-            <option value="private">Private room</option>       
-            <option value="shared">Shared room</option>     
-            <option value="hotel">Hotel room</option>         
+            <option value="Entire home/apt">Entire home/apt</option>       
+            <option value="Private room">Private room</option>       
+            <option value="Shared room">Shared room</option>     
+            <option value="Hotel room">Hotel room</option>         
           </select>
           </label>
 
@@ -86,9 +86,9 @@
         
         {% if name %}
         <center>
-          <h2>Showing the city of {{name}} with Airbnb listings near the price of {{price}} per night based off regression model. </h2> 
-          <h2> Inputs to model were room type: {{RoomType}}, accommodating {{accommodate}} people, {{bed}} beds, {{bathroom}} bathrooms 
-            and desired neighborhood of {{neighborhood}}.
+          <h2>Showing the city of <em>{{name}}</em> with Airbnb listings between the price of <em>{{price_lower}}</em> and <em>{{price_upper}}</em> per night. </h2> 
+          <h2> Regression model predicted price of <em>{{price}}</em> where inputs to model were room type: <em>{{RoomType}}</em>, accommodating <em>{{accommodate}}</em> people, <em>{{bed}}</em> beds, <em>{{bathroom}}</em> bathrooms 
+            and desired neighborhood of <em>{{neighborhood}}</em>.
           </h2>
         </center> 
         {% endif %}

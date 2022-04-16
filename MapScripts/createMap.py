@@ -7,7 +7,7 @@ from shapely.geometry import Point, Polygon
 import folium
 import branca
 from static.popup_html import popup_html # code used to show features when clicking airbnb
-
+import math
 
 def createMap(path_choro, path_listing, abrv, price=200):
 
@@ -115,8 +115,7 @@ def createMap(path_choro, path_listing, abrv, price=200):
     airbnb_locations = df_airbnb[['latitude','longitude']]
     airbnb_list = airbnb_locations.values.tolist()
 
-    price = int(price)
-    df_airbnb_price_filtered = df_airbnb[df_airbnb.price==price]
+    df_airbnb_price_filtered = df_airbnb[df_airbnb.price.between(round(price-2.5), round(price+2.5))]
     rows = len(df_airbnb_price_filtered)
     #https://georgetsilva.github.io/posts/mapping-points-with-folium/
     #https://towardsdatascience.com/folium-map-how-to-create-a-table-style-pop-up-with-html-code-76903706b88a
