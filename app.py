@@ -39,37 +39,37 @@ def result():
     bed = float(output["bed"])
     bathroom = float(output["bathroom"])
     neighborhood = output["neighborhood"]
-    price = round(get_price(name, RoomType, accommodate, bathroom, bed, neighborhood),2)
-    price_lower = round(price-2.5)
-    price_upper = round(price+2.5)
-    print(price_lower, price_upper)
     path_choro = ''
     path_listing = ''
     
     if name == 'Boston':
         path_choro = './SHP/Boston_SHP/Summarized_Shp/BostonCrime.shp'
-        path_listing = './Data/Boston_listings.csv'
+        path_listing = './Data/Boston-Listings-Clean-for-model.csv'
         abrv = 'Boston'
 
     if name == 'Chicago':
         path_choro = './SHP/Chicago_SHP/Summarized_Shp/ChicagoCrime.shp'
-        path_listing = './Data/Chicago_listings.csv'
+        path_listing = './Data/Chicago-Listings-Clean-for-model.csv'
         abrv = 'Chicago'
 
-    if name == 'Los Angeles':
+    if name == 'Los Angeles' or name == 'LA':
         path_choro = './SHP/LA_SHP/Summarized_SHP/LACrime.shp'
-        path_listing = './Data/LA_listings.csv'
+        path_listing = './Data/LA-Listings-Clean-for-model.csv'
         abrv = 'LA'
 
-    if name == 'San Francisco':
+    if name == 'San Francisco' or name == 'SF':
         path_choro = './SHP/SF_SHP/Summarized_SHP/SFCrime.shp'
-        path_listing = './Data/SF_listings.csv'
+        path_listing = './Data/SF-Listings-Clean-for-model.csv'
         abrv = "SF"
 
-    if name == 'New York City':
+    if name == 'New York City' or name == 'NYC':
         path_choro = './SHP/NYC_SHP/Summarized_Shp/NYCCrime.shp'
-        path_listing = './Data/NYC_listings.csv'
+        path_listing = './Data/NYC-Listings-Clean-for-model.csv'
         abrv = "NYC"
+
+    price = round(get_price(abrv, RoomType, accommodate, bathroom, bed, neighborhood),2)
+    price_lower = round(price-2.5)
+    price_upper = round(price+2.5)
 
     createMap(path_choro, path_listing, abrv, price)
 

@@ -15,6 +15,8 @@ In Anaconda create a new environment and then run these commands in the Anaconda
 conda install -c conda-forge fiona=1.8.19
  
 conda install -c conda-forge shapely rasterio pyproj pandas jupyterlab geopandas flask
+
+pip install statsmodels
 ```
 
 These packages are needed to work with Geopandas and using Flask as the framework for the website.
