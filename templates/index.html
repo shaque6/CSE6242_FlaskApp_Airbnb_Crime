@@ -86,56 +86,56 @@
         
         {% if name %}
         <center>
-          <h2>Showing similar Airbnb listings in <em>{{name}}</em> between the price of <em>${{price_lower}}</em> and <em>${{price_upper}}</em> per night. </h2> 
           <h2> Regression model predicted price of <em>${{price}}</em> where inputs to model were room type: <em>{{RoomType}}</em>, accommodating <em>{{accommodate}}</em> people, <em>{{bed}}</em> beds, <em>{{bathroom}}</em> bathrooms 
             and desired neighborhood of <em>{{neighborhood}}</em>.
           </h2>
+          <h2>Showing similar Airbnb listings in <em>{{name}}</em> between the price of <em>${{price_lower}}</em> and <em>${{price_upper}}</em> per night. </h2> 
         </center> 
         {% endif %}
 
         {% if name == 'Chicago' %}
-        <center>
-          <h2>Top amenities in <em>{{name}}</em></h2>
-          <img src="../static/Chicago_wordcloud.png" alt="Chicago Amenities" width="800" height="400">>
-        </center>
         <iframe src="../static/index_Chicago.html" width="100%" height="800" style="border:1px solid black;">
         </iframe>
+        <center>
+          <h2>Top amenities in <em>{{name}}</em></h2>
+          <img src="../static/Chicago_wordcloud.png" alt="Chicago Amenities" width="800" height="400">
+        </center>
         {% endif %}
 
         {% if name == 'Boston' %}
-        <center>
-          <h2>Top amenities in <em>{{name}}</em></h2>
-          <img src="../static/Boston_wordcloud.png" alt="Chicago Amenities" width="800" height="400">>
-        </center>
         <iframe src="../static/index_Boston.html" width="100%" height="800" style="border:1px solid black;">
         </iframe>
+        <center>
+          <h2>Top amenities in <em>{{name}}</em></h2>
+          <img src="../static/Boston_wordcloud.png" alt="Chicago Amenities" width="800" height="400">
+        </center>
         {% endif %}
 
         {% if name == 'Los Angeles' or name == 'LA' %}
-        <center>
-          <h2>Top amenities in <em>{{name}}</em></h2>
-          <img src="../static/LA_wordcloud.png" alt="Chicago Amenities" width="800" height="400">>
-        </center>
         <iframe src="../static/index_LA.html" width="100%" height="800" style="border:1px solid black;">
         </iframe>
+        <center>
+          <h2>Top amenities in <em>{{name}}</em></h2>
+          <img src="../static/LA_wordcloud.png" alt="Chicago Amenities" width="800" height="400">
+        </center>
         {% endif %}
         
         {% if name == 'New York City' or name == 'NYC' %}
-        <center>
-          <h2>Top amenities in <em>{{name}}</em></h2>
-          <img src="../static/NYC_wordcloud.png" alt="Chicago Amenities" width="800" height="400">>
-        </center>
         <iframe src="../static/index_NYC.html" width="100%" height="800" style="border:1px solid black;">
         </iframe>
+        <center>
+          <h2>Top amenities in <em>{{name}}</em></h2>
+          <img src="../static/NYC_wordcloud.png" alt="Chicago Amenities" width="800" height="400">
+        </center>
         {% endif %}
 
         {% if name == 'San Francisco' or name == 'SF' %}
-        <center>
-          <h2>Top amenities in <em>{{name}}</em></h2>
-          <img src="../static/SF_wordcloud.png" alt="Chicago Amenities" width="800" height="400">>
-        </center>
         <iframe src="../static/index_SF.html" width="100%" height="800" style="border:1px solid black;">
         </iframe>
+        <center>
+          <h2>Top amenities in <em>{{name}}</em></h2>
+          <img src="../static/SF_wordcloud.png" alt="Chicago Amenities" width="800" height="400">
+        </center>
         {% endif %}
         <br>
         <br>
